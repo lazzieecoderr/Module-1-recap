@@ -117,7 +117,7 @@ function prime(arr){
 }
 console.log(prime([1,2,3,4,5,6,7,8,9,10]));
 '*/
-
+/*
 class Movie {
     constructor(title,studio,rating="PG"){
        this.title = title;   //key: value  // leo = title
@@ -138,3 +138,16 @@ class Movie {
    ]
   const pgMovies = Movie.getPG(movies);
   console.log(pgMovies);
+  */
+
+  
+  const request = new XMLHttpRequest();
+  request.open("GET","https://restcountries.com/v3.1/all",true)
+  request.send();
+  request.onload=function(){
+      var data = request.response;
+      var result = JSON.parse(data)
+      //console.log(result);
+      var curr  = result.filter((ele)=>ele.currencies && ele.currencies.USD)
+      curr.forEach((value)=>console.log(value.name.common))
+      }
